@@ -8,6 +8,14 @@ namespace FileImporter
 {
     class Program
     {
+        /// <summary>
+        /// This example defines a Fluent file importer
+        /// to adapt all ICD10 diagnostics from a text file
+        /// to a collection of typed entities.
+        /// 
+        /// See README.md for details.
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             // Create importer
