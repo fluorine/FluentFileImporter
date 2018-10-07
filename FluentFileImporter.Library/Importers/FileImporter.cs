@@ -1,10 +1,13 @@
-﻿namespace FileImporter
+﻿using FileImporter.TextFile;
+
+namespace FileImporter
 {
     public static class FileImporter
     {
-        public static ITextFileImporter ToImportTextFile()
-        {
-            return new TextFileImporter();
-        }
+        /// <summary>
+        /// Get a new <see cref="ITextFileImporter"/> instance to configure.
+        /// </summary>
+        /// <returns></returns>
+        public static ITextFileImporter ToImportTextFile() => new TextFileImporter();
     }
 }

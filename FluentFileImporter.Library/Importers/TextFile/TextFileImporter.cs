@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace FileImporter
+namespace FileImporter.TextFile
 {
+    /// <inheritdoc/>
     public class TextFileImporter: ITextFileImporter
     {
         public IEnumerable<Tuple<int, int?>> DefinedColumns { get; protected set; }
@@ -53,7 +54,17 @@ namespace FileImporter
 
         public IEnumerable<E> GenerateEntitiesFromFile(string filePath)
         {
-            foreach (var line in File.ReadAllLines(filePath))
+            // Read all lines from file
+            IEnumerable<string> lines = File.ReadAllLines(filePath);
+            
+            // Ignore first line if required.
+            if(FirstLineIgnored)
+            {
+                lines = lines.Skip(1);
+            }
+
+            // Traverse the file's lines
+            foreach (var line in lines)
             {
                 // Get column values
                 var columns = new List<string>(DefinedColumns.Count());

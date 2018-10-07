@@ -13,12 +13,12 @@ namespace FileImporter
             // Create importer
             var fileTextImporterForDiagnostics = FileImporter
               .ToImportTextFile()
+              .IgnoreFirstLine(false)
                 .WithColumn(0, 5)
                 .WithColumn(6, 7)
                 .WithColumn(14, 1)
                 .WithColumn(16, 60)
                 .WithColumn(77)
-               .IgnoreFirstLine(false)
                .AdaptTo<Icd10Diagnostic>((e, columns) =>
                   {
                       e.Order = int.Parse(columns[0].Trim());
