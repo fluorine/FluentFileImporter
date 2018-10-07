@@ -1,8 +1,8 @@
 ﻿namespace FileImporter
 {
-    public class FileImporter
+    public static class FileImporter
     {
-        public static TextFileImporter ToImportTextFile()
+        public static ITextFileImporter ToImportTextFile()
         {
             return new TextFileImporter();
         }

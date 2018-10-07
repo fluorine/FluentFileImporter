@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace FileImporter
 {
-    public class TextFileImporter
+    public class TextFileImporter: ITextFileImporter
     {
-        public IEnumerable<Tuple<int, int?>> DefinedColumns { get; }
-        public bool FirstLineIgnored { get; }
+        public IEnumerable<Tuple<int, int?>> DefinedColumns { get; protected set; }
+        public bool FirstLineIgnored { get; protected set;  }
 
         private TextFileImporter(IEnumerable<Tuple<int,int?>> definedColumns, bool ignoreFirstLine)
         {
@@ -21,7 +21,7 @@ namespace FileImporter
             DefinedColumns = new List<Tuple<int, int?>>();
         }
 
-        public TextFileImporter WithColumn(int index, int? length = null)
+        public ITextFileImporter WithColumn(int index, int? length = null)
         {
             var column = Tuple.Create(index, length);
             return new TextFileImporter(
@@ -29,21 +29,19 @@ namespace FileImporter
                 FirstLineIgnored);
         }
 
-        public TextFileImporter IgnoreFirstLine(bool ignore)
+        public ITextFileImporter IgnoreFirstLine(bool ignore)
         {
             return new TextFileImporter(DefinedColumns, ignore);
         }
 
-        public TextFileImporter<E> AdaptTo<E>(Action<E, IList<string>> entityAdapter) where E : new()
+        public IFileImporter<E> AdaptTo<E>(Action<E, IList<string>> entityAdapter) where E : new()
         {
             return new TextFileImporter<E>(this, entityAdapter);
         }
     }
 
-    public class TextFileImporter<E> where E : new()
+    public class TextFileImporter<E> : TextFileImporter, IFileImporter<E> where E : new()
     {
-        public IEnumerable<Tuple<int, int?>> DefinedColumns { get; }
-        public bool FirstLineIgnored { get; }
         public Action<E, IList<string>> EntityAdapter { get; }
 
         public TextFileImporter(TextFileImporter textFileImporter, Action<E, IList<string>> entityAdapter)
