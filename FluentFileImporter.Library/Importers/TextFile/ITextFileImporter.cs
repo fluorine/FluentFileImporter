@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FileImporter.TextFile
+namespace FluentFileImporter.Importers.TextFile
 {
     public interface ITextFileImporter
     {

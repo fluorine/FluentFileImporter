@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FileImporter
+namespace FluentFileImporter
 {
     /// <summary>
     /// File importer to generate entities of type <typeparamref name="E"/>.

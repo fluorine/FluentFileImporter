@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace FileImporter.TextFile
+namespace FluentFileImporter.Importers.TextFile
 {
     /// <inheritdoc/>
     public class TextFileImporter: ITextFileImporter

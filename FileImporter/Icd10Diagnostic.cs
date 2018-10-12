@@ -1,4 +1,4 @@
-﻿namespace FileImporter
+﻿namespace FluentFileImporter.Example.Icd10Diagnostics
 {
     public class Icd10Diagnostic
     {

@@ -1,6 +1,6 @@
-﻿using FileImporter.TextFile;
+﻿using FluentFileImporter.Importers.TextFile;
 
-namespace FileImporter
+namespace FluentFileImporter
 {
     public static class FileImporter
     {
