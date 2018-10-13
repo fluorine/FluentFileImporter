@@ -19,6 +19,6 @@ namespace FluentFileImporter.Library.Importers.Contracts
         ///   True to ignore, default value if this function is invoked without arguments.
         ///   False if explicitly stated in argument, but also false if this function is never invoked.</param>
         /// <returns></returns>
-        T IgnoringFirstLine(bool ignore);
+        T IgnoringFirstLine(bool ignore = true);
     }
 }

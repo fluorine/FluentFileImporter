@@ -1,15 +1,12 @@
 ﻿using FluentFileImporter.Example.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace FluentFileImporter.Example.Icd10Diagnostics
+namespace FluentFileImporter.Example.FileImporterHelper
 {
-    class ImporterHelper
+    class DiagnosticsImporterHelper
     {
         public IFileImporter<Icd10Diagnostic> DiagnosticsTextFileImporter { get; }
         
-        public ImporterHelper()
+        public DiagnosticsImporterHelper()
         {
             // Create importer
             DiagnosticsTextFileImporter = FileImporter

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FluentFileImporter.Importers.TextFile
 {
@@ -33,7 +34,7 @@ namespace FluentFileImporter.Importers.TextFile
             return new PipeDelimitedTextFileImporter(DefinedColumns, ignore);
         }
 
-        public IFileImporter<E> AdaptTo<E>(Action<E, IDictionary<int, string>> entityAdapter) where E : new()
+        public IFileImporter<E> AdaptTo<E>(Action<E, IDictionary<string, string>> entityAdapter) where E : new()
         {
             return new PipeDelimitedTextFileImporter<E>(this, entityAdapter);
         }
@@ -41,14 +42,17 @@ namespace FluentFileImporter.Importers.TextFile
 
     public class PipeDelimitedTextFileImporter<E> : PipeDelimitedTextFileImporter, IFileImporter<E> where E : new()
     {
-        public Action<E, IDictionary<int,string>> EntityAdapter { get; }
+        public Action<E, IDictionary<string,string>> EntityAdapter { get; }
 
-        public PipeDelimitedTextFileImporter(PipeDelimitedTextFileImporter textFileImporter, Action<E, IDictionary<int,string>> entityAdapter)
+        public PipeDelimitedTextFileImporter(PipeDelimitedTextFileImporter textFileImporter, Action<E, IDictionary<string,string>> entityAdapter)
         {
             DefinedColumns = textFileImporter.DefinedColumns;
             FirstLineIgnored = textFileImporter.FirstLineIgnored;
             EntityAdapter = entityAdapter;
         }
+
+        public static Lazy<Regex> SplitRegex =
+            new Lazy<Regex>(() => new Regex(@"(?<!(?<!\\)*\\)\|", RegexOptions.Compiled));
 
         public IEnumerable<E> GenerateEntitiesFromFile(string filePath)
         {
@@ -60,54 +64,28 @@ namespace FluentFileImporter.Importers.TextFile
             {
                 lines = lines.Skip(1);
             }
+            // Traverse the file's lines
+            foreach (var line in lines)
+            {
+                // Split line
+                var tokens = SplitRegex.Value.Split(line);
 
-            //    // Traverse the file's lines
-            //    foreach (var line in lines)
-            //    {
-            //        // Get column values
-            //        var columns = new List<string>(DefinedColumns.Count());
-            //        foreach (var definedColumn in DefinedColumns)
-            //        {
-            //            columns.Add(line.Substring(
-            //                definedColumn.Item1,
-            //                definedColumn.Item2 ?? line.Length - definedColumn.Item1));
-            //        }
+                // Store column values in dictionary
+                var columns = new Dictionary<string,string>(DefinedColumns.Count());
 
-            //        // Create and fill entity
-            //        var entity = new E();
-            //        EntityAdapter(entity, columns);
-            //        yield return entity;
-            //    }
+                foreach (var definedColumn in DefinedColumns)
+                {
+                    // Fill dictionary with key-value pairs
+                    columns[definedColumn.Value] = tokens[definedColumn.Key];
+                }
+
+                // Create and fill entity
+                var entity = new E();
+                EntityAdapter(entity, columns);
+
+                // Return them as needed
+                yield return entity;
+            }
         }
-
-        //public IEnumerable<E> GenerateEntitiesFromFile(string filePath)
-        //{
-        //    // Read all lines from file
-        //    IEnumerable<string> lines = File.ReadAllLines(filePath);
-
-        //    // Ignore first line if required.
-        //    if(FirstLineIgnored)
-        //    {
-        //        lines = lines.Skip(1);
-        //    }
-
-        //    // Traverse the file's lines
-        //    foreach (var line in lines)
-        //    {
-        //        // Get column values
-        //        var columns = new List<string>(DefinedColumns.Count());
-        //        foreach (var definedColumn in DefinedColumns)
-        //        {
-        //            columns.Add(line.Substring(
-        //                definedColumn.Item1,
-        //                definedColumn.Item2 ?? line.Length - definedColumn.Item1));
-        //        }
-
-        //        // Create and fill entity
-        //        var entity = new E();
-        //        EntityAdapter(entity, columns);
-        //        yield return entity;
-        //    }
-        //}
     }
 }

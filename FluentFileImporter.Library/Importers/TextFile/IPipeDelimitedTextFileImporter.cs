@@ -4,6 +4,10 @@ using FluentFileImporter.Library.Importers.Contracts;
 
 namespace FluentFileImporter.Importers.TextFile
 {
+    /// <summary>
+    /// Defines an importer for files with pipe-delimited (|) columns.
+    ///   IMPORTANT: The importer assumes the pipe could be scaped with the sequence "\|"
+    /// </summary>
     public interface IPipeDelimitedTextFileImporter : IFirstLineIgnorable<IPipeDelimitedTextFileImporter>
     {
         /// <summary>
@@ -24,9 +28,9 @@ namespace FluentFileImporter.Importers.TextFile
         /// </summary>
         /// <typeparam name="E">Entity to be filled.</typeparam>
         /// <param name="entityAdapter">Method to adapt column values, given an empty instance of
-        /// <typeparamref name="E"/> and a list of column values in order,
-        /// defined with <see cref="HasColumn(int, int?)"/>. </param>
+        /// <typeparamref name="E"/> and a list of column values as key values,
+        /// defined with <see cref="HasColumn(int, string)"/>. </param>
         /// <returns></returns>
-        IFileImporter<E> AdaptTo<E>(Action<E, IDictionary<int, string>> entityAdapter) where E : new();
+        IFileImporter<E> AdaptTo<E>(Action<E, IDictionary<string, string>> entityAdapter) where E : new();
     }
 }

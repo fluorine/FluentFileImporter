@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileImporter.Example.Icd10Diagnostics", "FileImporter\FileImporter.Example.Icd10Diagnostics.csproj", "{94BF39FB-949C-428C-84EC-96CF67B33AB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileImporter.Example", "FileImporter\FileImporter.Example.csproj", "{94BF39FB-949C-428C-84EC-96CF67B33AB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentFileImporter.Library", "FluentFileImporter.Library\FluentFileImporter.Library.csproj", "{340B2839-B0AD-4682-AF33-29D5604A8FEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentFileImporter.Library", "FluentFileImporter.Library\FluentFileImporter.Library.csproj", "{340B2839-B0AD-4682-AF33-29D5604A8FEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
