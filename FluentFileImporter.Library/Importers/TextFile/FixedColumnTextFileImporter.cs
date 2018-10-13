@@ -6,46 +6,46 @@ using System.Linq;
 namespace FluentFileImporter.Importers.TextFile
 {
     /// <inheritdoc/>
-    public class TextFileImporter: ITextFileImporter
+    public class FixedColumnTextFileImporter : IFixedColumnTextFileImporter
     {
         public IEnumerable<Tuple<int, int?>> DefinedColumns { get; protected set; }
         public bool FirstLineIgnored { get; protected set;  }
 
-        private TextFileImporter(IEnumerable<Tuple<int,int?>> definedColumns, bool ignoreFirstLine)
+        private FixedColumnTextFileImporter(IEnumerable<Tuple<int,int?>> definedColumns, bool ignoreFirstLine)
         {
             DefinedColumns = definedColumns ?? new List<Tuple<int,int?>>();
             FirstLineIgnored = ignoreFirstLine;
         }
 
-        public TextFileImporter()
+        public FixedColumnTextFileImporter()
         {
             DefinedColumns = new List<Tuple<int, int?>>();
         }
 
-        public ITextFileImporter WithColumn(int index, int? length = null)
+        public IFixedColumnTextFileImporter HasColumn(int index, int? length = null)
         {
             var column = Tuple.Create(index, length);
-            return new TextFileImporter(
+            return new FixedColumnTextFileImporter(
                 new List<Tuple<int,int?>>(DefinedColumns) { column },
                 FirstLineIgnored);
         }
 
-        public ITextFileImporter IgnoreFirstLine(bool ignore)
+        public IFixedColumnTextFileImporter IgnoringFirstLine(bool ignore = true)
         {
-            return new TextFileImporter(DefinedColumns, ignore);
+            return new FixedColumnTextFileImporter(DefinedColumns, ignore);
         }
 
         public IFileImporter<E> AdaptTo<E>(Action<E, IList<string>> entityAdapter) where E : new()
         {
-            return new TextFileImporter<E>(this, entityAdapter);
+            return new FixedColumnTextFileImporter<E>(this, entityAdapter);
         }
     }
 
-    public class TextFileImporter<E> : TextFileImporter, IFileImporter<E> where E : new()
+    public class FixedColumnTextFileImporter<E> : FixedColumnTextFileImporter, IFileImporter<E> where E : new()
     {
         public Action<E, IList<string>> EntityAdapter { get; }
 
-        public TextFileImporter(TextFileImporter textFileImporter, Action<E, IList<string>> entityAdapter)
+        public FixedColumnTextFileImporter(FixedColumnTextFileImporter textFileImporter, Action<E, IList<string>> entityAdapter)
         {
             DefinedColumns = textFileImporter.DefinedColumns;
             FirstLineIgnored = textFileImporter.FirstLineIgnored;
@@ -55,7 +55,7 @@ namespace FluentFileImporter.Importers.TextFile
         public IEnumerable<E> GenerateEntitiesFromFile(string filePath)
         {
             // Read all lines from file
-            IEnumerable<string> lines = File.ReadAllLines(filePath);
+            IEnumerable<string> lines = File.ReadLines(filePath);
             
             // Ignore first line if required.
             if(FirstLineIgnored)
