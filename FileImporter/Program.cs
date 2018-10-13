@@ -11,8 +11,8 @@ namespace FluentFileImporter.Example
     {
         /// <summary>
         /// This example defines a Fluent file importer
-        /// to adapt all ICD10 diagnostics from a text file
-        /// to a collection of typed entities.
+        /// to adapt codes from text files
+        /// to collections of typed entities.
         /// 
         /// See README.md for details.
         /// </summary>
