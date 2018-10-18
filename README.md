@@ -5,6 +5,12 @@ Currently, these are the only importers available:
  - Fixed-width column text files
  - Pipe-character separated columns text files
 
+# NuGet Installation
+Using the Package Manager Console, write this command:
+```
+Install-Package FluentFileImporter.Library
+```
+
 # Usage example for text file with fixed-width data columns
 This example is included in the solution as the Example project.
 
@@ -49,7 +55,7 @@ var fileTextImporterForDiagnostics = FileImporter
 	.HasColumn(16, 60)
 	.HasColumn(77)
    .AdaptTo<Icd10Diagnostic>((e, columns) =>
-   {
+   	{
 	   e.Order = int.Parse(columns[0].Trim());
 
 	   // Get code and add point
@@ -62,7 +68,7 @@ var fileTextImporterForDiagnostics = FileImporter
 	   // Code Descriptions
 	   e.ShortDescription = columns[3].Trim();
 	   e.LongDescription = columns[4].Trim();
-   });
+   	});
 ```
 
 To get the entities from the importer, the file must be provided as input to the importer
@@ -109,13 +115,13 @@ var valueSetsTextFileImporter = FileImporter
 	.HasColumn(9,  "Description")
 	.HasColumn(10, "CodeSystem")
    .AdaptTo<ValueSet>((e, columns) =>
-   {
+   	{
 	   e.ValueSetName = columns["ValueSetName"];
 	   e.ValueSetOid = columns["ValueSetOid"];
 	   e.Code = columns["Code"];
 	   e.Description = columns["Description"];
 	   e.CodeSystem = columns["CodeSystem"];
-   });
+   	});
 ```
 
 There is also the `.ConsideringMultilineValues()` fluent option, used just as `IgnoringFirstLine()`, to consider values that continue in next line, including the new line character.
