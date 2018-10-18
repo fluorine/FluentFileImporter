@@ -6,3 +6,21 @@ Goal Achievement|2.16.840.1.113883.11.20.9.55|20170106|C-CDA R2.1 2018-06-15|The
 Clinical Substance|2.16.840.1.113762.1.4.1010.2|20180122|C-CDA R2.1 2018-06-15|Any substance that can be ordered or is included in a clinical record. This is not restricted to medications.|Clinical Substance ManufacturedProduct/manufacturedMaterial/code/translation/|As defined in grouped value sets|No drug classes|1148491|24 HR tramadol hydrochloride 300 MG Extended Release Oral Capsule [ConZip]|RXNORM|2.16.840.1.113883.6.88|2018-04
 Clinical Substance|2.16.840.1.113762.1.4.1010.2|20180122|C-CDA R2.1 2018-06-15|Any substance that can be ordered or is included in a clinical record. This is not restricted to medications.|Clinical Substance ManufacturedProduct/manufacturedMaterial/code/translation/|As defined in grouped value sets|No drug classes|1148496|crizotinib 200 MG|RXNORM|2.16.840.1.113883.6.88|2018-04
 Clinical Substance|2.16.840.1.113762.1.4.1010.2|20180122|C-CDA R2.1 2018-06-15|Any substance that can be ordered or is included in a clinical record. This is not restricted to medications.|Clinical Substance ManufacturedProduct/manufacturedMaterial/code/translation/|As defined in grouped value sets|No drug classes|1148497|crizotinib Oral Capsule|RXNORM|2.16.840.1.113883.6.88|2018-04
+Care Plan Document Type|2.16.840.1.113762.1.4.1099.10|20180517|C-CDA R2.1 2018-06-15|Terms used to identify documents that represent a Care Plan||||77443-0|Allergy and immunology Plan of care note|LOINC|2.16.840.1.113883.6.1|2.63
+Care Plan Document Type|2.16.840.1.113762.1.4.1099.10|20180517|C-CDA R2.1 2018-06-15|Terms used to identify documents that represent a Care Plan||||77444-8|Audiology Plan of care note|LOINC|2.16.840.1.113883.6.1|2.63
+Care Plan Document Type|2.16.840.1.113762.1.4.1099.10|20180517|C-CDA R2.1 2018-06-15|Terms used to identify documents that represent a Care Plan||||77445-5|Critical care medicine Plan of care note|LOINC|2.16.840.1.113883.6.1|2.63
+Care Plan Document Type|2.16.840.1.113762.1.4.1099.10|20180517|C-CDA R2.1 2018-06-15|Terms used to identify documents that represent a Care Plan||||77446-3|Child and adolescent psychiatry Plan of care note|LOINC|2.16.840.1.113883.6.1|2.63
+Clinical Drug Ingredient|2.16.840.1.113762.1.4.1010.7|20180526|C-CDA R2.1 2018-06-15|All active ingredients in RxNorm used in clinical drugs, identifying either a "generic" or "brand-specific" ingredient concept. Intended to represent ingredient substances that may function as reactants.|Medication reactant substance, Administrable drug|"Value set intensionally defined from RXNORM (OID: 2.16.840.1.113883.6.88)
+Union(
+   FilterOnProperty(TTY,IN),
+   FilterOnProperty(TTY,PIN), 
+   FilterOnProperty(TTY, MIN),
+   FilterOnProperty(TTY,BN),
+ )"|Concepts not in the inclusion criteria. Inactive concepts.|24902|prussian blue insoluble|RXNORM|2.16.840.1.113883.6.88|2018-04
+Clinical Drug Ingredient|2.16.840.1.113762.1.4.1010.7|20180526|C-CDA R2.1 2018-06-15|All active ingredients in RxNorm used in clinical drugs, identifying either a "generic" or "brand-specific" ingredient concept. Intended to represent ingredient substances that may function as reactants.|Medication reactant substance, Administrable drug|"Value set intensionally defined from RXNORM (OID: 2.16.840.1.113883.6.88)
+Union(
+   FilterOnProperty(TTY,IN),
+   FilterOnProperty(TTY,PIN), 
+   FilterOnProperty(TTY, MIN),
+   FilterOnProperty(TTY,BN),
+ )"|Concepts not in the inclusion criteria. Inactive concepts.|24909|iron sucrose|RXNORM|2.16.840.1.113883.6.88|2018-04

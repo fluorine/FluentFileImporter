@@ -56,7 +56,7 @@ namespace FluentFileImporter.Example
         private static void PrintValueSetCodes()
         {
             // Title
-            Console.WriteLine("\n##### Value Set Codes ####");
+            Console.WriteLine("\n##### Value Set Codes #####");
 
             // Use importer for ICD10 Codes, 
             // which imports them from a fixed-width

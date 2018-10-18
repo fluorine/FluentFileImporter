@@ -11,6 +11,19 @@ namespace FluentFileImporter.Importers.TextFile
     public interface IPipeDelimitedTextFileImporter : IFirstLineIgnorable<IPipeDelimitedTextFileImporter>
     {
         /// <summary>
+        /// Consider multiline values. See <see cref="ConsideringMultilineValues"/> documentation for details.
+        /// </summary>
+        bool MultilineValuesConsidered { get; }
+
+        /// <summary>
+        /// Multiline values are considered if the setting <see cref="MultilineValuesConsidered"/> is <value>true</value>.
+        /// The setting can be configured using this function.
+        /// If there are not enough column values for the defined.
+        /// </summary>
+        /// <param name="considerMultilineValues"></param>
+        IPipeDelimitedTextFileImporter ConsideringMultilineValues(bool considerMultilineValues = true);
+
+        /// <summary>
         /// Columns defined in terms of substring, position at line and column length.
         /// </summary>
         IDictionary<int, string> DefinedColumns { get; }

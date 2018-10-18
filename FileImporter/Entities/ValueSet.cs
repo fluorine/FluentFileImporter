@@ -24,7 +24,8 @@ namespace FileImporter.Example.Entities
         {
             return $"{ValueSetName} ({ValueSetOid})\n" +
                 $" - Code:        {Code} ({CodeSystem})\n" +
-                $" - Description: {Description}\n\n";
+                $" - Description: {Description}\n\n"; //+ 
+             // $" - More:        {PurposeInclusionCriteria}\n\n"; // Considering multiline values
         }
     }
 }

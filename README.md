@@ -118,7 +118,10 @@ var valueSetsTextFileImporter = FileImporter
    });
 ```
 
-Assuming there is a `ValueSet` class like this:
+There is also the `.ConsideringMultilineValues()` fluent option, used just as `IgnoringFirstLine()`, to consider values that continue in next line, including the new line character.
+
+The configuration above requires a `ValueSet` class like this:
+
 ```C#
 public class ValueSet
 {
@@ -130,7 +133,7 @@ public class ValueSet
 }
 ```
 
-The importer defined above can adapt the file below to a collection of `ValueSet` entities.
+The importer defined above can adapt the file below to a collection of `ValueSet` entities. 
 
 ```
 Value Set Name|Value Set OID|Definition Version|Expansion Version|Purpose: Clinical Focus|Purpose: Data Element Scope|Purpose: Inclusion Criteria|Purpose: Exclusion Criteria|Code|Description|Code System|Code System OID|Code System Version

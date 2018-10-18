@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <Authors>Fluorine</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>A small library to create file importers using a fluent syntax.</Description>
@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/fluorine/FluentFileImporter</PackageProjectUrl>
     <PackageTags>import, file, csv, text</PackageTags>
     <Copyright>(c)2018 MIT</Copyright>
+    <PackageReleaseNotes>Option to consider values that continue in next line in Pipe files.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

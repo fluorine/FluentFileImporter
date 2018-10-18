@@ -12,6 +12,7 @@ namespace FluentFileImporter.Example.FileImporterHelper
             ValueSetsTextFileImporter = FileImporter
               .ForTextFile()
               .WithPipeDelimitedColumns()
+              .ConsideringMultilineValues()
               .IgnoringFirstLine()
                 .HasColumn(0, "ValueSetName")
                 .HasColumn(1, "ValueSetOid")
@@ -46,6 +47,8 @@ namespace FluentFileImporter.Example.FileImporterHelper
 
         private string ProcessValue(string input)
         {
+            if (input == null) return null;
+
             // Remove scaped characters
             var value = input.Replace(@"\|", "|");
 
